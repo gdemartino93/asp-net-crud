@@ -1,4 +1,5 @@
-﻿using asp_net_crud.Models;
+﻿using asp_net_crud.Data;
+using asp_net_crud.Models;
 using asp_net_crud.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +7,13 @@ namespace asp_net_crud.Controllers
 {
     public class EmployeesController : Controller
     {
+        private readonly MVCDemoDbContext mvcDemoDbContext;
+
+        public EmployeesController(MVCDemoDbContext mvcDemoDbContext )
+        {
+            this.mvcDemoDbContext = mvcDemoDbContext;
+        }
+
         [HttpGet]
         public IActionResult Add()
         {
@@ -23,7 +31,9 @@ namespace asp_net_crud.Controllers
                 DateOfBirth = request.DateOfBirth,
                 Department = request.Department,
             };
-            
+            mvcDemoDbContext.Employees.Add( employee );
+            mvcDemoDbContext.SaveChanges(); // salviamo le modifiche nel db
+            return RedirectToAction("Add"); // dopo aver inviato il form ritorna la vista add 
         }
     }
 }
