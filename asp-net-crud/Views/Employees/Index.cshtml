@@ -14,6 +14,8 @@
                 <th scope="col">Stipendio</th>
                 <th scope="col">Data di nascita</th>
                 <th scope="col">Reparto</th>
+                <th scope="col"></th>
+
             </tr>
         </thead>
         <tbody>
@@ -26,6 +28,7 @@
                     <td>@employee.Salary &euro;</td>
                     <td>@employee.DateOfBirth.ToString("dd-mm-yyyy")</td>
                     <td>@employee.Department</td>
+                    <td><a href="Employees/View/@employee.Id">Apri scheda lavoratore </a></td>
                 </tr>
             }
 

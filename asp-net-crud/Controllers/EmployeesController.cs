@@ -1,6 +1,7 @@
 ﻿using asp_net_crud.Data;
 using asp_net_crud.Models;
 using asp_net_crud.Models.Domain;
+using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,6 +41,26 @@ namespace asp_net_crud.Controllers
             await mvcDemoDbContext.Employees.AddAsync( employee );
             await mvcDemoDbContext.SaveChangesAsync(); // salviamo le modifiche nel db
             return RedirectToAction("Index"); // dopo aver inviato il form ritorna la vista index 
+        }
+        [HttpGet]
+        public async Task<IActionResult> View(Guid id)
+        {
+            var employee = await mvcDemoDbContext.Employees.FindAsync(id);
+            if( employee != null)
+            {
+                var viewModel = new UpdateEmployeeViewModel()
+                {
+                    Id = employee.Id,
+                    Name = employee.Name,
+                    Email = employee.Email,
+                    Salary = employee.Salary,
+                    DateOfBirth = employee.DateOfBirth,
+                    Department = employee.Department,
+                };
+                return View(viewModel);
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,0 +1,24 @@
+﻿@model asp_net_crud.Models.UpdateEmployeeViewModel
+@{
+}
+<div class="container">
+    <h1 class="my-3"> Aggiungi un nuovo lavoratore</h1>
+    <form method="POST" action="View">
+        <div class="mb-3">
+            <label for="id" class="form-label">Id</label>
+            <input type="text" class="form-control" asp-for="Id" readonly>
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" class="form-control" placeholder="Inserisci nome..." asp-for="Name">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" placeholder="Inserisci email..." asp-for="Email">
+            <label for="salary" class="form-label">Stipendio</label>
+            <input type="number" class="form-control" placeholder="Inserisci stipendio..." asp-for="Salary">
+            <label for="dateOfBirth" class="form-label">Data di nascita</label>
+            <input type="date" class="form-control" asp-for="DateOfBirth">
+            <label for="department" class="form-label">Reparto</label>
+            <input type="text" class="form-control" placeholder="Inserisci reparto..." asp-for="Department">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Aggiungi</button>
+    </form>
+</div>
