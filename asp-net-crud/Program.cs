@@ -1,3 +1,6 @@
+using asp_net_crud.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace asp_net_crud
 {
     public class Program
@@ -8,6 +11,11 @@ namespace asp_net_crud
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<MVCDemoDbContext>(options =>
+                options.UseSqlServer(builder.Configuration
+                .GetConnectionString("MvcDemoConnectionString")));
+
+
 
             var app = builder.Build();
 
