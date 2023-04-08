@@ -39,7 +39,7 @@ namespace asp_net_crud.Controllers
             };
             await mvcDemoDbContext.Employees.AddAsync( employee );
             await mvcDemoDbContext.SaveChangesAsync(); // salviamo le modifiche nel db
-            return RedirectToAction("Add"); // dopo aver inviato il form ritorna la vista add 
+            return RedirectToAction("Index"); // dopo aver inviato il form ritorna la vista index 
         }
     }
 }
