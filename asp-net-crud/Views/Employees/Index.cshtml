@@ -1,0 +1,35 @@
+﻿@model List<asp_net_crud.Models.Domain.Employee>
+
+@{
+}
+
+<div class="container">
+	<h1>Lista impiegati</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Stipendio</th>
+                <th scope="col">Data di nascita</th>
+                <th scope="col">Reparto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var employee in Model)
+            {
+                <tr>
+                    <th scope="row">@employee.Id</th>
+                    <td>@employee.Name</td>
+                    <td>@employee.Email</td>
+                    <td>@employee.Salary &euro;</td>
+                    <td>@employee.DateOfBirth.ToString("dd-mm-yyyy")</td>
+                    <td>@employee.Department</td>
+                </tr>
+            }
+
+           
+        </tbody>
+    </table>
+</div>
