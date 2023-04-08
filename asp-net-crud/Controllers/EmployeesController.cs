@@ -20,7 +20,7 @@ namespace asp_net_crud.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Add(AddEmployeeViewModel request)
+        public async Task<IActionResult> Add(AddEmployeeViewModel request)
         {
             var employee = new Employee()
             {
@@ -31,8 +31,8 @@ namespace asp_net_crud.Controllers
                 DateOfBirth = request.DateOfBirth,
                 Department = request.Department,
             };
-            mvcDemoDbContext.Employees.Add( employee );
-            mvcDemoDbContext.SaveChanges(); // salviamo le modifiche nel db
+            await mvcDemoDbContext.Employees.AddAsync( employee );
+            await mvcDemoDbContext.SaveChangesAsync(); // salviamo le modifiche nel db
             return RedirectToAction("Add"); // dopo aver inviato il form ritorna la vista add 
         }
     }
