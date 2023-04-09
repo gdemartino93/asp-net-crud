@@ -57,10 +57,29 @@ namespace asp_net_crud.Controllers
                     DateOfBirth = employee.DateOfBirth,
                     Department = employee.Department,
                 };
-                return View(viewModel);
+                return await Task.Run(() => View("View", viewModel));
+
             }
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> View(UpdateEmployeeViewModel request)
+        {
+            var employee = await mvcDemoDbContext.Employees.FindAsync(request.Id);
+            if( employee != null )
+            {
+                employee.Name = request.Name;
+                employee.Email = request.Email;
+                employee.Salary = request.Salary;
+                employee.DateOfBirth = request.DateOfBirth;
+                employee.Department = request.Department;
+                await mvcDemoDbContext.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+        
     }
 }
